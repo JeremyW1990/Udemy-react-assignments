@@ -1,8 +1,59 @@
 import React, { Component } from 'react';
+import Validation from './Validation/Validation'
+import Char from './Char/Char'
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    inputValue: '',
+    inputLength : 0,
+    charList: []
+  }
+
+  inputChangeHandler = (e) => {
+    const tempCharList = [];
+    for (let v of e.target.value) {
+      if (tempCharList.indexOf(v) === -1) tempCharList.push(v);
+    }
+
+    this.setState({
+      inputValue: e.target.value,
+      inputLength : e.target.value.length,
+      charList: tempCharList
+    });
+  }
+
+  charClickHandler = (value) => {
+    let tempInput = this.state.inputValue;
+    while (tempInput.indexOf(value) > -1){
+      let tempInputArray = tempInput.split('');
+      tempInputArray.splice(tempInputArray.indexOf(value), 1);
+      tempInput = tempInputArray.join('');
+    }
+    const tempCharList = this.state.charList.slice();
+    tempCharList.splice(tempCharList.indexOf(value),1);
+    this.setState({
+      inputValue : tempInput,
+      inputLength : tempInput.length,
+      charList: tempCharList
+    });
+  }
+
   render() {
+
+    const charListComponent = this.state.charList.map((char) => {
+      return (
+        <Char 
+        key = {char} 
+        click = {()=> {this.charClickHandler(char)}}
+        >
+          {char}
+        </Char>
+      )
+    })
+
+    
     return (
       <div className="App">
         <ol>
@@ -14,7 +65,12 @@ class App extends Component {
           <li>When you click a CharComponent, it should be removed from the entered text.</li>
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
+        <input onChange = {(e) => this.inputChangeHandler(e)} value={this.state.inputValue}></input>
+        <p>Input Length is {this.state.inputLength}  </p>
+        <Validation input = {this.state.inputLength}></Validation>
+        {charListComponent}
       </div>
+      
     );
   }
 }
