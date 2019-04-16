@@ -12,6 +12,7 @@ class App extends Component {
   }
 
   inputChangeHandler = (e) => {
+    console.log(e.target.value)
     const tempCharList = [];
     for (let v of e.target.value) {
       if (tempCharList.indexOf(v) === -1) tempCharList.push(v);
@@ -25,6 +26,7 @@ class App extends Component {
   }
 
   charClickHandler = (value) => {
+    
     let tempInput = this.state.inputValue;
     while (tempInput.indexOf(value) > -1){
       let tempInputArray = tempInput.split('');
@@ -42,16 +44,41 @@ class App extends Component {
 
   render() {
 
-    const charListComponent = this.state.charList.map((char) => {
-      return (
-        <Char 
-        key = {char} 
-        click = {()=> {this.charClickHandler(char)}}
-        >
-          {char}
-        </Char>
-      )
-    })
+    // const charListComponent = this.state.charList.map((char) => {
+    //   return (
+    //     <Char 
+    //       key = {char} 
+    //       click = {()=> {this.charClickHandler(char)}}
+    //     >
+    //       {char}
+    //     </Char>
+    //   )
+    // })
+
+    const charListComponent = [];
+    for (var char of this.state.charList) {
+      // const CharComponent = (
+      //   <Char 
+      //     key = {char} 
+      //     click = {()=> {this.charClickHandler(char)}}
+      //   >
+      //     {char}
+      //   </Char>
+      // )
+      const CharComponent = (function(char) {
+        return (
+          <Char
+            key = {char}
+            click = {()=> {this.charClickHandler(char)}}
+          >
+            {char}
+          </Char>
+        )
+
+      }).call(this, char);
+      charListComponent.push(CharComponent);
+    }
+
 
     
     return (
