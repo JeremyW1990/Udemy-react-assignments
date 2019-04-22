@@ -25,8 +25,9 @@ class App extends Component {
     });
   }
 
-  charClickHandler = (value) => {
+  charClickHandler = (event , value) => {
     
+    console.log('charClickHandler' ,event, value)
     let tempInput = this.state.inputValue;
     while (tempInput.indexOf(value) > -1){
       let tempInputArray = tempInput.split('');
@@ -69,7 +70,7 @@ class App extends Component {
         return (
           <Char
             key = {char}
-            click = {()=> {this.charClickHandler(char)}}
+            click = {(event, char)=> {this.charClickHandler(event, char)}}
           >
             {char}
           </Char>
