@@ -26,7 +26,8 @@ class Courses extends Component {
                             return (
                                 <NavLink 
                                     to={{
-                                        pathname : '/courses/' + course.id + '/' + course.title,
+                                        pathname : '/courses/' + course.id,
+                                        search: `?title=${course.title}`
                                     }}
                                     key={course.id}>
                                     <article className="Course" >{course.title}</article>
@@ -35,7 +36,7 @@ class Courses extends Component {
                         } )
                     }
                 </section>
-                <Route exact path= {this.props.match.url + '/:id/:title'} component={Course}/>  
+                <Route exact path= {this.props.match.url + '/:id'} component={Course}/>  
             </div>
         );
     }
