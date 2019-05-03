@@ -27,9 +27,8 @@ class App extends Component {
           </ul>
           <Route path='/users' component={Users}/>
           <Switch>
-            <Route path='/course' component={Course}/>  
+            <Route path='/course/:id/:title' component={Course}/>  
             <Route path='/courses' component={Courses}/>  
-
           </Switch>
         </div>
       </BrowserRouter>

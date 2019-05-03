@@ -9,7 +9,8 @@ class Courses extends Component {
             { id: 1, title: 'Angular - The Complete Guide' },
             { id: 2, title: 'Vue - The Complete Guide' },
             { id: 3, title: 'PWA - The Complete Guide' }
-        ]
+        ],
+
     }
 
     render () {
@@ -22,7 +23,7 @@ class Courses extends Component {
                             return (
                                 <NavLink 
                                     to={{
-                                        pathname : '/course'
+                                        pathname : '/course/' + course.id + '/' + course.title,
                                     }}
                                     key={course.id}>
                                     <article className="Course" >{course.title}</article>
