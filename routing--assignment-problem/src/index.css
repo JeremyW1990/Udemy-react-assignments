@@ -4,3 +4,14 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
+
+
+ul {
+  list-style : none;
+}
+
+ul li {
+  display : inline-block;
+  margin : 0;
+  padding : 20px;
+}
