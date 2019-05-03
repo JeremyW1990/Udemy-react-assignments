@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom';
+
+import Course from '../Course/Course'
+
 
 import './Courses.css';
 
@@ -23,7 +26,7 @@ class Courses extends Component {
                             return (
                                 <NavLink 
                                     to={{
-                                        pathname : '/course/' + course.id + '/' + course.title,
+                                        pathname : '/courses/' + course.id + '/' + course.title,
                                     }}
                                     key={course.id}>
                                     <article className="Course" >{course.title}</article>
@@ -32,6 +35,7 @@ class Courses extends Component {
                         } )
                     }
                 </section>
+                <Route exact path= {this.props.match.url + '/:id/:title'} component={Course}/>  
             </div>
         );
     }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 
 import Courses from './containers/Courses/Courses';
-import Course from './containers/Course/Course'
 import Users from './containers/Users/Users';
 
 class App extends Component {
@@ -25,11 +24,11 @@ class App extends Component {
             <li><NavLink to='/users'>Users</NavLink></li>  
             <li><NavLink to='/courses'>Courses</NavLink></li>
           </ul>
-          <Route path='/users' component={Users}/>
           <Switch>
-            <Route path='/course/:id/:title' component={Course}/>  
-            <Route path='/courses' component={Courses}/>  
-          </Switch>
+            <Route path ='/users' exact component={Users}/>
+            <Route path ='/courses' component={Courses}/>  
+            <Route render = {() => <h1>PAGE NOT FOUND</h1>}/>
+          </Switch>  
         </div>
       </BrowserRouter>
     );
